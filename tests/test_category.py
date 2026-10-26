@@ -2,7 +2,8 @@ def test_category_initialization(first_category):
     assert first_category.name == "Телевизоры"
     assert (
         first_category.description
-        == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
+        == "Современный телевизор, который позволяет наслаждаться просмотром, "
+        "станет вашим другом и помощником"
     )
     assert len(first_category.products) == 2
 

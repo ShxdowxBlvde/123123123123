@@ -9,7 +9,8 @@ def mock_json_file(tmp_path):
     data = [
         {
             "name": "Смартфоны",
-            "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
+            "description": "Смартфоны, как средство не только коммуникации, "
+            "но и получение дополнительных функций для удобства жизни",
             "products": [
                 {
                     "name": "Iphone 15",
@@ -27,7 +28,7 @@ def mock_json_file(tmp_path):
 
 
 def test_read_json(mock_json_file):
-    """Тестируем, что функция read_json корректно читает файл и возвращает list"""
+    """тестируем, что функция read_json корректно читает файл и возвращает list"""
     result = read_json(mock_json_file)
 
     assert isinstance(result, list)
@@ -36,23 +37,23 @@ def test_read_json(mock_json_file):
 
 
 def test_create_objects_from_json(mock_json_file):
-    """Тестируем, что функция создает реальные объекты нужных классов с правильными связями"""
+    """тестируем, что функция создает правильные объекты"""
     Category.category_count = 0
     Category.product_count = 0
 
     raw_data = read_json(mock_json_file)
     categories = create_objects_from_json(raw_data)
 
-    # Проверяем структуру созданных объектов
+    # проверяем структуру созданных объектов
     assert len(categories) == 1
     assert isinstance(categories[0], Category)
     assert categories[0].name == "Смартфоны"
 
-    # Проверяем вложенный продукт
+    # проверяем вложенный продукт
     assert len(categories[0].products) == 1
     assert categories[0].products[0].name == "Iphone 15"
     assert categories[0].products[0].price == 210000.0
 
-    # Проверяем, что счетчики классов сработали корректно
+    # проверяем, что счетчики классов сработали корректно
     assert Category.category_count == 1
     assert Category.product_count == 1
