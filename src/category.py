@@ -1,5 +1,6 @@
 from src.product import Product
 
+
 class Category:
     category_count = 0
     product_count = 0
@@ -14,15 +15,14 @@ class Category:
 
         Category.category_count += 1
 
-
     def add_product(self, product: Product):
         self.__products.append(product)
         Category.product_count += 1
-
 
     @property
     def products(self) -> str:
         result = ""
         for product in self.__products:
-            result += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            result += (f"{product.name}, {product.price} руб."
+                       f"Остаток: {product.quantity} шт.\n")
         return result

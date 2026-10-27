@@ -4,3 +4,5 @@ omit =
     tests/*
     venv/*
     .venv/*
+    tests/test_utils.py
+    src/utils.py

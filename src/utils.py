@@ -24,7 +24,7 @@ def create_objects_from_json(data: list) -> list:
         category_object = Category(
             name=category_data["name"],
             description=category_data["description"],
-            products=products_list
+            products=products_list,
         )
         categories.append(category_object)
 

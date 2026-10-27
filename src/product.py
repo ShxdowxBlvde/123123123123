@@ -5,14 +5,13 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @classmethod
     def new_product(cls, product_data: dict):
         return cls(
             name=product_data.get("name"),
             description=product_data.get("description"),
             price=product_data.get("price"),
-            quantity=product_data.get("quantity")
+            quantity=product_data.get("quantity"),
         )
 
     @property
