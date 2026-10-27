@@ -11,18 +11,23 @@ def read_json(path: str) -> list:
     return data
 
 
-def create_objects_from_json(data):
+def create_objects_from_json(data: list) -> list:
     categories = []
+
     for category_data in data:
         products_list = []
+
         for product_data in category_data["products"]:
-            products_list.append(Product(**product_data))
+            new_prod = Product.new_product(product_data)
+            products_list.append(new_prod)
+
         category_object = Category(
             name=category_data["name"],
             description=category_data["description"],
-            products=products_list,
+            products=products_list
         )
         categories.append(category_object)
+
     return categories
 
 
