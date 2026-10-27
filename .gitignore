@@ -9,3 +9,7 @@ env/
 .coverage
 
 .env
+
+htmlcov/*
+
+!htmlcov/index.html
