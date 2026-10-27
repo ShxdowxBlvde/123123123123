@@ -1,5 +1,4 @@
 import pytest
-
 from src.category import Category
 from src.product import Product
 
@@ -15,11 +14,23 @@ def reset_category_counts():
 def first_category():
     return Category(
         name="Телевизоры",
-        description="Современный телевизор, который позволяет наслаждаться просмотром, "
-        "станет вашим другом и помощником",
+        description=(
+            "Современный телевизор, который позволяет наслаждаться просмотром, "
+            "станет вашим другом и помощником"
+        ),
         products=[
-            Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7),
-            Product('61" OLED 4K', "Звук как из саба", 83000.0, 9),
+            Product(
+                name='55" QLED 4K',
+                description="Фоновая подсветка",
+                price=123000.0,
+                quantity=7,
+            ),
+            Product(
+                name='61" OLED 4K',
+                description="Звук как из саба",
+                price=83000.0,
+                quantity=9,
+            ),
         ],
     )
 
@@ -28,23 +39,47 @@ def first_category():
 def second_category():
     return Category(
         name="Смартфоны",
-        description="Смартфоны, как средство не только коммуникации, "
-        "но и получения дополнительных функций для удобства жизни",
+        description="Смартфоны как средство коммуникации",
         products=[
             Product(
-                "Samsung Galaxy S23 Ultra",
-                "256GB, Серый цвет, 200MP камера",
-                180000.0,
-                5,
+                name="Samsung Galaxy S23 Ultra",
+                description="256GB",
+                price=180000.0,
+                quantity=5,
             ),
-            Product("Iphone 15", "512GB, Gray space", 210000.0, 8),
-            Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
+            Product(
+                name="Iphone 15",
+                description="512GB",
+                price=210000.0,
+                quantity=8,
+            ),
+            Product(
+                name="Xiaomi Redmi Note 11",
+                description="1024GB",
+                price=31000.0,
+                quantity=14,
+            ),
         ],
     )
 
 
 @pytest.fixture
 def product():
+    """Фикстура для изолированного тестирования одного продукта"""
     return Product(
-        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+        name="Samsung Galaxy S23 Ultra",
+        description="256GB, Серый цвет, 200MP камера",
+        price=180000.0,
+        quantity=5,
     )
+
+
+@pytest.fixture
+def sample_product_dict():
+    """Фикстура возвращает словарь для тестирования класс-метода"""
+    return {
+        "name": "Samsung Galaxy S23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 180000.0,
+        "quantity": 5,
+    }
