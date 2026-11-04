@@ -9,7 +9,10 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        return (self.price * self.quantity) + (other.price * other.quantity)
+        if not isinstance(other, Product):
+            raise TypeError("Можно складывать только объекты Product")
+
+        return (self.__price * self.quantity) + (other.__price * other.quantity)
 
     @classmethod
     def new_product(cls, product_data: dict):

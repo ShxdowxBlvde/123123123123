@@ -1,5 +1,5 @@
 from src.product import Product
-
+import pytest
 
 def test_product_initialization(product):
     """Проверка базовой инициализации атрибутов"""
@@ -43,3 +43,16 @@ def test_product_price_setter_invalid(capsys):
 def test_str(product):
     result = str(product)
     assert result == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+def test_add_products(second_category):
+    products = second_category.products_list
+
+    assert products[0] + products[1] == 2580000
+    assert products[0] + products[2] == 1334000
+    assert products[1] + products[2] == 2114000
+
+
+
+def test_add_invalid_type(product):
+    with pytest.raises(TypeError):
+        product + "Телефон"
