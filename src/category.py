@@ -29,6 +29,7 @@ class Category:
         for product in self.__products:
             result += f"{str(product)}\n"
         return result
+
     @property
     def products_list(self):
         return self.__products
