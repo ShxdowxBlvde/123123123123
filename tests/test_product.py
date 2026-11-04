@@ -38,3 +38,8 @@ def test_product_price_setter_invalid(capsys):
     assert product.price == 210000.0
     captured = capsys.readouterr()
     assert "цена должна быть больше нуля" in captured.out
+
+def test_str(product):
+    result = str(product)
+    assert result == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+

@@ -1,6 +1,6 @@
 from src.category import Category
 from src.product import Product
-
+import pytest
 
 def test_first_category_initialization(first_category):
     """Проверка корректности инициализации полей категории"""
@@ -74,3 +74,9 @@ def test_product_in_category(first_category):
     products_string = first_category.products
     assert '55" QLED 4K' in products_string
     assert "Остаток: 7 шт." in products_string
+
+def test_add(second_category):
+    products = second_category.products_list
+    result = products[0] + products[1]
+    assert result == 2580000.0
+
