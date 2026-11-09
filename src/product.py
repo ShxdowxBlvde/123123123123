@@ -9,8 +9,8 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if not isinstance(other, Product):
-            raise TypeError("Можно складывать только объекты Product")
+        if type(self) != type(other):
+            raise TypeError("Можно складывать только товары одного класса")
 
         return (self.__price * self.quantity) + (other.__price * other.quantity)
 
@@ -33,3 +33,37 @@ class Product:
             print("цена должна быть больше нуля")
         else:
             self.__price = new_price
+
+class Smartphone(Product):
+    def __init__(
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            efficiency: float,
+            model: str,
+            memory: int,
+            color: str
+    ):
+            super().__init__(name, description, price, quantity)
+            self.efficiency = efficiency
+            self.model = model
+            self.memory = memory
+            self.color = color
+
+class LawnGrass(Product):
+    def __init__(
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            country: str,
+            germination_period: int,
+            color: str
+    ):
+            super().__init__(name, description, price, quantity)
+            self.germination_period = germination_period
+            self.country = country
+            self.color = color
