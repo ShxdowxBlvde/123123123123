@@ -1,4 +1,4 @@
-from src.product import Product
+from src.product import Product, Smartphone, LawnGrass
 import pytest
 
 def test_product_initialization(product):
@@ -51,6 +51,28 @@ def test_add_products(second_category):
     assert products[0] + products[2] == 1334000
     assert products[1] + products[2] == 2114000
 
+
+
+def test_add_invalid_type(product):
+    with pytest.raises(TypeError):
+        product + "Телефон"
+
+def test_add_smartphones(smartphone, another_smartphone):
+    assert smartphone + another_smartphone == 2580000.0
+
+
+def test_add_lawn_grass(lawn_grass, another_lawn_grass):
+    assert lawn_grass + another_lawn_grass == 16750.0
+
+
+def test_add_different_product_classes(smartphone, lawn_grass):
+    with pytest.raises(TypeError):
+        smartphone + lawn_grass
+
+
+def test_add_product_and_smartphone(product, smartphone):
+    with pytest.raises(TypeError):
+        product + smartphone
 
 
 def test_add_invalid_type(product):

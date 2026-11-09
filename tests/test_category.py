@@ -1,6 +1,6 @@
 from src.category import Category
-from src.product import Product
-
+from src.product import Product, Smartphone, LawnGrass
+import pytest
 
 def test_first_category_initialization(first_category):
     """Проверка корректности инициализации полей категории"""
@@ -76,7 +76,52 @@ def test_product_in_category(first_category):
     assert "Остаток: 7 шт." in products_string
 
 
-def test_add(second_category):
-    products = second_category.products_list
-    result = products[0] + products[1]
-    assert result == 2580000.0
+def test_add_different_classes(product, smartphone):
+    with pytest.raises(TypeError):
+        product + smartphone
+
+def test_add_smartphone_to_category(first_category):
+    smartphone = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+
+    first_category.add_product(smartphone)
+
+    assert smartphone in first_category.products_list
+
+
+def test_add_lawn_grass_to_category(first_category):
+    grass = LawnGrass(
+        "Газонная трава",
+        "Элитная трава",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
+    )
+
+    first_category.add_product(grass)
+
+    assert grass in first_category.products_list
+
+
+def test_add_invalid_object_to_category(first_category):
+    with pytest.raises(TypeError):
+        first_category.add_product("Not a product")
+
+
+def test_add_invalid_object_does_not_increase_product_count(first_category):
+    initial_count = Category.product_count
+
+    with pytest.raises(TypeError):
+        first_category.add_product("Not a product")
+
+    assert Category.product_count == initial_count
