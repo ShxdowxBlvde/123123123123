@@ -83,6 +83,8 @@ def sample_product_dict():
         "price": 180000.0,
         "quantity": 5,
     }
+
+
 @pytest.fixture
 def smartphone():
     return Smartphone(

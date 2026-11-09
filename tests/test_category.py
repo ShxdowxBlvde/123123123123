@@ -2,6 +2,7 @@ from src.category import Category
 from src.product import Product, Smartphone, LawnGrass
 import pytest
 
+
 def test_first_category_initialization(first_category):
     """Проверка корректности инициализации полей категории"""
     assert first_category.name == "Телевизоры"
@@ -79,6 +80,7 @@ def test_product_in_category(first_category):
 def test_add_different_classes(product, smartphone):
     with pytest.raises(TypeError):
         product + smartphone
+
 
 def test_add_smartphone_to_category(first_category):
     smartphone = Smartphone(
