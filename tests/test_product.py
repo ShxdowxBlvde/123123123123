@@ -76,16 +76,10 @@ def test_add_product_and_smartphone(product, smartphone):
     with pytest.raises(TypeError):
         product + smartphone
 
+
 def test_smartphone_repr():
     smartphone = Smartphone(
-        "Samsung",
-        "256GB",
-        100000.0,
-        5,
-        95.5,
-        "S23 Ultra",
-        256,
-        "Серый"
+        "Samsung", "256GB", 100000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
     )
 
     expected = "Smartphone(Samsung, 256GB, 100000.0, 5)"
@@ -94,15 +88,7 @@ def test_smartphone_repr():
 
 
 def test_lawn_grass_repr():
-    grass = LawnGrass(
-        "Газонная трава",
-        "Для сада",
-        500.0,
-        20,
-        "Россия",
-        7,
-        "Зеленый"
-    )
+    grass = LawnGrass("Газонная трава", "Для сада", 500.0, 20, "Россия", 7, "Зеленый")
 
     expected = "LawnGrass(Газонная трава, Для сада, 500.0, 20)"
 
@@ -111,14 +97,10 @@ def test_lawn_grass_repr():
 
 def test_subclasses_inherit_base_product():
     smartphone = Smartphone(
-        "Samsung", "256GB", 100000.0, 5,
-        95.5, "S23 Ultra", 256, "Серый"
+        "Samsung", "256GB", 100000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
     )
 
-    grass = LawnGrass(
-        "Газонная трава", "Для сада", 500.0, 20,
-        "Россия", 7, "Зеленый"
-    )
+    grass = LawnGrass("Газонная трава", "Для сада", 500.0, 20, "Россия", 7, "Зеленый")
 
     assert isinstance(smartphone, Product)
     assert isinstance(grass, Product)
