@@ -1,6 +1,7 @@
 from src.product import Product
 import pytest
 
+
 def test_product_initialization(product):
     """Проверка базовой инициализации атрибутов"""
     assert product.name == "Samsung Galaxy S23 Ultra"
@@ -44,6 +45,7 @@ def test_str(product):
     result = str(product)
     assert result == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
 
+
 def test_add_products(second_category):
     products = second_category.products_list
 
@@ -52,7 +54,24 @@ def test_add_products(second_category):
     assert products[1] + products[2] == 2114000
 
 
-
 def test_add_invalid_type(product):
     with pytest.raises(TypeError):
         product + "Телефон"
+
+
+def test_add_smartphones(smartphone, another_smartphone):
+    assert smartphone + another_smartphone == 2580000.0
+
+
+def test_add_lawn_grass(lawn_grass, another_lawn_grass):
+    assert lawn_grass + another_lawn_grass == 16750.0
+
+
+def test_add_different_product_classes(smartphone, lawn_grass):
+    with pytest.raises(TypeError):
+        smartphone + lawn_grass
+
+
+def test_add_product_and_smartphone(product, smartphone):
+    with pytest.raises(TypeError):
+        product + smartphone
