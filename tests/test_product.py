@@ -1,4 +1,4 @@
-from src.product import Product
+from src.product import Product, Smartphone, LawnGrass
 import pytest
 
 
@@ -75,3 +75,32 @@ def test_add_different_product_classes(smartphone, lawn_grass):
 def test_add_product_and_smartphone(product, smartphone):
     with pytest.raises(TypeError):
         product + smartphone
+
+
+def test_smartphone_repr():
+    smartphone = Smartphone(
+        "Samsung", "256GB", 100000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
+    )
+
+    expected = "Smartphone(Samsung, 256GB, 100000.0, 5)"
+
+    assert repr(smartphone) == expected
+
+
+def test_lawn_grass_repr():
+    grass = LawnGrass("Газонная трава", "Для сада", 500.0, 20, "Россия", 7, "Зеленый")
+
+    expected = "LawnGrass(Газонная трава, Для сада, 500.0, 20)"
+
+    assert repr(grass) == expected
+
+
+def test_subclasses_inherit_base_product():
+    smartphone = Smartphone(
+        "Samsung", "256GB", 100000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
+    )
+
+    grass = LawnGrass("Газонная трава", "Для сада", 500.0, 20, "Россия", 7, "Зеленый")
+
+    assert isinstance(smartphone, Product)
+    assert isinstance(grass, Product)
