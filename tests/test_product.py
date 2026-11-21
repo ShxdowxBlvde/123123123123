@@ -104,3 +104,10 @@ def test_subclasses_inherit_base_product():
 
     assert isinstance(smartphone, Product)
     assert isinstance(grass, Product)
+
+
+def test_product_zero_quantity(product):
+    with pytest.raises(
+        ValueError, match="Товар с нулевым количеством не может быть добавлен"
+    ):
+        Product("Iphone 15", "512GB", 210000.0, 0)

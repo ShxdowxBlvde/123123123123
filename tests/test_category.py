@@ -127,3 +127,12 @@ def test_add_invalid_object_does_not_increase_product_count(first_category):
         first_category.add_product("Not a product")
 
     assert Category.product_count == initial_count
+
+
+def test_middle_price(first_category):
+    assert first_category.middle_price() == 103000.0
+
+
+def test_empty_category():
+    category = Category("нет товара", "описание", [])
+    assert category.middle_price() == 0
